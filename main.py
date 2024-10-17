@@ -1,56 +1,8 @@
-import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap
-
-
-def process_map_csv(file_path: str) -> list:
-    print(file_path)
-    grid = []
-
-    with open(file_path) as f:
-        line = f.readline().replace("\n", "").replace("L", "0").replace("S", "1").replace("O", "2")
-        while line:
-            num_lst = []
-            for num in line.split(","):
-                num_lst.append(int(num))
-
-            grid.append(num_lst)
-            line = f.readline().replace("\n", "").replace("L", "0").replace("S", "1").replace("O", "2")
-
-        print(grid)
-    grid.reverse()  # Move origo to lower left corner
-    return grid
-
-
-def plot_grid_map(grid: list):
-    plot_map = grid
-    rows = len(plot_map)
-    cols = len(plot_map[0])
-    
-    # Set the figure size for better visibility
-    plt.figure(figsize=(10, 10))
-
-    # Assign color to value: 0 = green, 1 = yellow, 2 = black
-    col_map = ListedColormap(['green', 'yellow', 'black'], 'indexed')
-
-    # Plot grid with a finer linewidth for better clarity
-    plt.pcolormesh(plot_map, edgecolors='k', linewidth=0.5, cmap=col_map)
-
-    # Get current axis object and set tick marks
-    ax = plt.gca()
-    ax.set_yticks(range(0, rows + 1, 2))
-    ax.set_xticks(range(0, cols + 1, 2))
-
-    # Adjust font size for better readability
-    ax.tick_params(axis='both', which='major', labelsize=8)
-    plt.title(f"Colored grid of size {rows}x{cols}", fontsize=14)
-
-    # Show the plot with improved layout
-    plt.tight_layout()
-    plt.show()
+from grid import process_map_csv, plot_grid_map
 
 
 def main():
-    grid = process_map_csv("pattern_50x50.csv")
+    grid = process_map_csv("simple.csv")
     plot_grid_map(grid)
 
 
