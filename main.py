@@ -1,5 +1,5 @@
-from grid import process_map_csv, plot_grid_map
-from lawnmower import Lawnmower, get_start_pos
+from grid import process_map_csv, plot_grid_map, get_start_pos, get_obstacles
+from lawnmower import Lawnmower
 
 
 def main():
@@ -19,6 +19,7 @@ def main():
         time += 1
         if time > 600:
             break
+    print(get_obstacles(grid))
 
     lm.draw_path(visited_positions)
     print("POSITIONS: ", visited_positions)
