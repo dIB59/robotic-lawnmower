@@ -28,6 +28,15 @@ def get_start_pos(grid: list[list[int]]) -> (int, int):
                 return j, i
 
 
+def get_obstacles(grid: list[list[int]]) -> list[(int, int)]:
+    obs_list = []
+    for i, row in enumerate(grid):
+        for j, char in enumerate(row):
+            if char == 2:
+                obs_list.append((j, i))
+
+    return obs_list
+
 
 def plot_grid_map(grid: list):
     plot_map = grid
