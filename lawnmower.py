@@ -1,13 +1,6 @@
 import matplotlib.pyplot as plt
 
 
-def get_start_pos(grid: list) -> (int, int):
-    for i, row in enumerate(grid):
-        for j, char in enumerate(row):
-            if char == 1:
-                return j, i
-
-
 class Lawnmower:
     def __init__(self, x=0.0, y=0.0, v_x=0.0, v_y=0.0, grid_len_x=0, grid_len_y=0):
         self.x = x

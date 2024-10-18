@@ -21,6 +21,14 @@ def process_map_csv(file_path: str) -> list:
     return grid
 
 
+def get_start_pos(grid: list[list[int]]) -> (int, int):
+    for i, row in enumerate(grid):
+        for j, char in enumerate(row):
+            if char == 1:
+                return j, i
+
+
+
 def plot_grid_map(grid: list):
     plot_map = grid
     rows = len(plot_map)
