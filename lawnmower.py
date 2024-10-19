@@ -41,7 +41,7 @@ class Lawnmower:
     def get_pos(self) -> (float, float):
         return self.x, self.y
 
-    def draw_path(self, coordinates: list) -> None:
+    def draw_path(self, coordinates: list, time: int) -> None:
         x_vals = [x for x, y in coordinates]
         y_vals = [y for x, y in coordinates]
 
@@ -49,7 +49,7 @@ class Lawnmower:
         plt.plot(x_vals, y_vals, linestyle='-', color='blue')
 
         # Set labels and title
-        plt.title("Graph of Visited Positions")
+        plt.title(f"Graph of Visited Positions in {time} seconds")
         plt.xlabel("X")
         plt.ylabel("Y")
         plt.grid(True)
