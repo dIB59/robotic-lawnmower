@@ -13,6 +13,3 @@ This project simulates a robotic lawnmower navigating a grid. Below are some ima
 ### Visited Tiles on Grid
 ![Visited Tiles](assets/myplot_visited_tiles_50x50.png)
 
-### Final Path of Robotic Lawnmower
-![Final Path](assets/simple_mypplot_grid.png)
-
