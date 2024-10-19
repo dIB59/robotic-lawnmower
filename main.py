@@ -8,7 +8,7 @@ def main():
     start_pos_x, start_pos_y = get_start_pos(grid)
     print(start_pos_x)
 
-    lm = Lawnmower(start_pos_x, start_pos_y, 0.1, 0.1, 5, 4)
+    lm = Lawnmower(start_pos_x, start_pos_y, 0.1, 0.1, 5, 4, get_obstacles(grid))
     time = 0
     visited_positions = []
     while True:
