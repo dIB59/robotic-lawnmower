@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
+from grid import get_obstacles
 
 
 class Lawnmower:
-    def __init__(self, x=0.0, y=0.0, v_x=0.0, v_y=0.0, grid_len_x=0, grid_len_y=0):
+    def __init__(self, x=0.0, y=0.0, v_x=0.0, v_y=0.0, grid_len_x=0, grid_len_y=0, obstacles: list[int] = None):
         self.x = x
         self.y = y
 
@@ -12,12 +13,18 @@ class Lawnmower:
         self.max_x = grid_len_x
         self.max_y = grid_len_y
 
+        self.obstacles = obstacles
+
         # if cos(v_x)*cos(v_x) + cos(v_x)*cos(v_x) > 3:
         #     raise AssertionError
 
     def move(self, dt: int = 1):
         self.x += self.v_x * dt
         self.y += self.v_y * dt
+
+        if 2 <= self.x <= 3 and 2 <= self.y <= 4:
+            self.x = self.x - self.v_x * dt
+            self.v_x *= -1
 
         if self.x > self.max_x:
             self.v_x *= -1
