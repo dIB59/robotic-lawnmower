@@ -49,18 +49,43 @@ def plot_grid_map(grid: list):
     # Assign color to value: 0 = green, 1 = yellow, 2 = black
     col_map = ListedColormap(['green', 'yellow', 'black'], 'indexed')
 
-    # Plot grid with a finer linewidth for better clarity
-    plt.pcolormesh(plot_map, edgecolors='k', linewidth=0.5, cmap=col_map)
-
-    # Get current axis object and set tick marks
-    ax = plt.gca()
-    ax.set_yticks(range(0, rows + 1, 2))
-    ax.set_xticks(range(0, cols + 1, 2))
-
-    # Adjust font size for better readability
-    ax.tick_params(axis='both', which='major', labelsize=8)
+    plot_default_map(col_map, cols, plot_map, rows)
     plt.title(f"Colored grid of size {rows}x{cols}", fontsize=14)
 
     # Show the plot with improved layout
     plt.tight_layout()
     plt.show()
+
+
+def plot_grid_with_visited_tiles(grid: list[list[int]], visited_positions: list[tuple[float, float]]):
+    plot_map = [row[:] for row in grid]
+    rows = len(plot_map)
+    cols = len(plot_map[0])
+    tiles = set()
+    for x, y in visited_positions:
+        if 0 <= int(y) < rows and 0 <= int(x) < cols:
+            tiles.add((int(y), int(x)))
+            plot_map[int(y)][int(x)] = 3  # Set visited tiles to 3
+
+    plt.figure(figsize=(10, 10))
+
+    col_map = ListedColormap(['white', 'yellow', 'black', 'red'], 'indexed')
+
+    plot_default_map(col_map, cols, plot_map, rows)
+    plt.title(f"Grid with Visited Tiles ({len(tiles)} visited)", fontsize=14)
+
+    # Show the plot with improved layout
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_default_map(col_map, cols, plot_map, rows):
+    plt.pcolormesh(plot_map, edgecolors='k', linewidth=0.5, cmap=col_map)
+    # Get current axis object and set tick marks
+    ax = plt.gca()
+    ax.set_yticks(range(0, rows + 1, 2))
+    ax.set_xticks(range(0, cols + 1, 2))
+
+    ax.tick_params(axis='both', which='major', labelsize=8)
+
+
