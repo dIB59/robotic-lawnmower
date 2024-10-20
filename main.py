@@ -33,11 +33,11 @@ def main():
 
     # Draw the path taken by the Lawnmower
     lm.draw_path(visited_positions, time)
-    print("Visited Positions: ", visited_positions)
-
+    #print("Visited Positions: ", visited_positions)
+    big_grid = processor.magnify(4)
+    big_grid.plot_grid_with_visited_tiles(visited_positions, 4)
     # Plot the grid with visited tiles
-    processor.plot_grid_with_visited_tiles(visited_positions)
-
+    #processor.plot_grid_with_visited_tiles(visited_positions)
 
 if __name__ == '__main__':
     main()

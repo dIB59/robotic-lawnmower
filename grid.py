@@ -1,5 +1,3 @@
-from typing import List
-
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
@@ -15,7 +13,7 @@ class GridMapProcessor:
             raise ValueError("Either a grid or a file_path must be provided.")
 
     @classmethod
-    def from_grid(cls, grid: list[list[str]]):
+    def from_grid(cls, grid: list[list[str | int]]):
         """Alternate constructor to initialize the class with a grid."""
         return cls(grid=grid)
 
@@ -37,7 +35,7 @@ class GridMapProcessor:
         grid.reverse()  # Move origo to lower left corner
         return grid
 
-    def magnify(self, size: int) -> list[list[int]]:
+    def magnify(self, size: int) -> 'GridMapProcessor':
         """Magnifies the grid by the given size."""
         big_grid = []
         for row in self.grid:
@@ -46,7 +44,8 @@ class GridMapProcessor:
                 new_row.extend([num] * size)  # Repeat each number `size` times
             for _ in range(size):  # Repeat the whole row `size` times
                 big_grid.append(new_row)
-        return big_grid
+
+        return GridMapProcessor.from_grid(big_grid)
 
     def get_start_pos(self) -> tuple[int, int]:
         for i, row in enumerate(self.grid):
@@ -80,15 +79,15 @@ class GridMapProcessor:
         plt.tight_layout()
         plt.show()
 
-    def plot_grid_with_visited_tiles(self, visited_positions: list[tuple[float, float]]):
+    def plot_grid_with_visited_tiles(self, visited_positions: list[tuple[float, float]], magnification: int = 1):
         plot_map = [row[:] for row in self.grid]
         rows = len(plot_map)
         cols = len(plot_map[0])
         tiles = set()
         for x, y in visited_positions:
-            if 0 <= int(y) < rows and 0 <= int(x) < cols:
-                tiles.add((int(y), int(x)))
-                plot_map[int(y)][int(x)] = 3  # Set visited tiles to 3
+            if 0 <= int(y * magnification) < rows and 0 <= int(x * magnification) < cols:
+                tiles.add((int(y * magnification), int(x * magnification)))
+                plot_map[int(y * magnification)][int(x * magnification)] = 3  # Mark visited tiles with 3
 
         plt.figure(figsize=(10, 10))
 
