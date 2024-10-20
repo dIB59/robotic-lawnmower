@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
+import unittest
 
 
-def process_map_csv(file_path: str) -> list:
+def process_map_csv(file_path: str) -> list[list[int]]:
     print(file_path)
     grid = []
 
@@ -88,4 +89,30 @@ def plot_default_map(col_map, cols, plot_map, rows):
 
     ax.tick_params(axis='both', which='major', labelsize=8)
 
+#   L,L,O,L,L
+#   L,L,O,L,L
+#   L,L,L,L,L
+#   L,L,L,S,L
+#   magnify by 2 becomes
+#   note we convert the S into an L
+#   L,L,L,L,O,O,L,L,L,L
+#   L,L,L,L,O,O,L,L,L,L
+#   L,L,L,L,O,O,L,L,L,L
+#   L,L,L,L,O,O,L,L,L,L
+#   L,L,L,L,L,L,L,L,L,L
+#   L,L,L,L,L,L,L,L,L,L
+#   L,L,L,L,L,L,L,L,L,L
 
+
+def magnify(grid: list[list[str]], size: int):
+    big_grid = []
+
+    for row in grid:
+        new_row = []
+        for num in row:
+            for i in range(size):
+                new_row.append(num)
+        for i in range(size):
+            big_grid.append(new_row)
+
+    return big_grid

@@ -3,14 +3,14 @@ from lawnmower import Lawnmower
 
 
 def main():
-    grid = process_map_csv("simple.csv")
-    # grid = process_map_csv("pattern_50x50.csv")
+    # grid = process_map_csv("simple.csv")
+    grid = process_map_csv("pattern_50x50.csv")
     plot_grid_map(grid)
     start_pos_x, start_pos_y = get_start_pos(grid)
     print(start_pos_x)
 
     lm = Lawnmower(start_pos_x, start_pos_y, 0.1, 0.1, len(grid[0]), len(grid), get_obstacles(grid))
-    time = 100
+    time = 1000
     visited_positions = []
     for _ in range(time):
         lm.move()
