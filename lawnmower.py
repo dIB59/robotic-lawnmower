@@ -24,7 +24,6 @@ class Lawnmower:
 
         self.obstacles = obstacles
 
-
     def update_position(self) -> (float, float):
         new_x = self.x + self.v_x * self.dt
         new_y = self.y + self.v_y * self.dt
