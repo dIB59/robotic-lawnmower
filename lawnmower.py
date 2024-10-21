@@ -14,8 +14,8 @@ class Lawnmower:
         self.y = y
 
         self.theta = math.radians(theta)
-        self.v_x = round(speed * math.cos(theta), 1)
-        self.v_y = round(speed * math.sin(theta), 1)
+        self.v_x = speed * math.cos(theta)
+        self.v_y = speed * math.sin(theta)
 
         self.max_x = grid_len_x
         self.max_y = grid_len_y
