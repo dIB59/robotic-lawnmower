@@ -24,8 +24,6 @@ class Lawnmower:
 
         self.obstacles = obstacles
 
-        # if cos(v_x)*cos(v_x) + cos(v_x)*cos(v_x) > 3:
-        #     raise AssertionError
 
     def update_position(self) -> (float, float):
         new_x = self.x + self.v_x * self.dt
