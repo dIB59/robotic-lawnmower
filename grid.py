@@ -4,6 +4,7 @@ from matplotlib.colors import ListedColormap
 
 class GridMapProcessor:
     LAWN = 0
+    START =1
     OBSTACLE = 2
     VISITED = 3
 
