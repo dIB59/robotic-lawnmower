@@ -47,6 +47,10 @@ class Lawnmower:
         plt.figure(figsize=(self.max_x, self.max_y))
         plt.plot(x_vals, y_vals, linestyle='-', color='blue')
 
+        # Set axis limits to always go to max_x and max_y
+        plt.xlim(0, self.max_x)
+        plt.ylim(0, self.max_y)
+
         # Set labels and title
         plt.title(f"Graph of Visited Positions in {time} seconds")
         plt.xlabel("X")
