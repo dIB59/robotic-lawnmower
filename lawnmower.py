@@ -1,17 +1,30 @@
+import math
 import matplotlib.pyplot as plt
 
 
 class Lawnmower:
-    def __init__(self, x=0.0, y=0.0, v_x=0.0, v_y=0.0, grid_len_x=0, grid_len_y=0,
+    def __init__(self, x=0.0, y=0.0, speed=0.3,
+                 # v_y=0.1,
+                 grid_len_x=0, grid_len_y=0,
+                 # speed: int = 0.3,  #remember this bug
+                 theta: int = 45,
+                 dt: float = 0.5,
                  obstacles: list[tuple[int, int]] = None):
+
         self.x = x
         self.y = y
 
-        self.v_x = v_x
-        self.v_y = v_y
+        self.theta = math.radians(theta)
+        self.v_x = round(speed * math.cos(theta), 1)
+        self.v_y = round(speed * math.sin(theta), 1)
+
+        # self.v_x = 0.1
+        # self.v_y = 0.1
 
         self.max_x = grid_len_x
         self.max_y = grid_len_y
+
+        self.dt = dt
 
         self.obstacles = obstacles
 
@@ -36,6 +49,12 @@ class Lawnmower:
             self.v_x *= -1
         if self.y > self.max_y or self.y < 0:
             self.v_y *= -1
+
+        print()
+        print(self.v_x, self.v_y)
+        print(self.x, self.y)
+
+        return self.x, self.y
 
     def get_pos(self) -> (float, float):
         return self.x, self.y
