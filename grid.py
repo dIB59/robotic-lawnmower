@@ -3,6 +3,9 @@ from matplotlib.colors import ListedColormap
 
 
 class GridMapProcessor:
+    LAWN = 0
+    OBSTACLE = 2
+    VISITED = 3
 
     def __init__(self, grid=None, file_path=None):
         if grid:
