@@ -85,7 +85,7 @@ class GridMapProcessor:
         cols = len(plot_map[0])
         tiles = set()
         for x, y in visited_positions:
-            if 0 <= int(y * magnification) < rows and 0 <= int(x * magnification) < cols:
+            if 0 <= y * magnification < rows and 0 <= x * magnification < cols:
                 tiles.add((int(y * magnification), int(x * magnification)))
                 plot_map[int(y * magnification)][int(x * magnification)] = 3  # Mark visited tiles with 3
 
