@@ -94,7 +94,8 @@ class GridMapProcessor:
         col_map = ListedColormap(['white', 'yellow', 'black', 'red'], 'indexed')
 
         self.plot_default_map(col_map, cols, plot_map, rows)
-        plt.title(f"Grid with Visited Tiles ({len(tiles)} visited)", fontsize=14)
+        coverage_percent = (len(tiles) * 100) /(rows * cols)
+        plt.title(f"Grid Tiles ({len(tiles)} visited) {coverage_percent:.2f}% covered", fontsize=14)
 
         # Show the plot with improved layout
         plt.tight_layout()
