@@ -6,64 +6,64 @@ class TestMagnifyFunction(unittest.TestCase):
 
     def test_magnify_by_2(self):
         input_grid = [
-            ['L', 'L', 'O', 'L', 'L'],
-            ['L', 'L', 'O', 'L', 'L'],
-            ['L', 'L', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'L', 'L']
+            [0, 0, 2, 0, 0],
+            [0, 0, 2, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0]
         ]
         processor = GridMapProcessor.from_grid(input_grid)
         expected_output = [
-            ['L', 'L', 'L', 'L', 'O', 'O', 'L', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'L', 'O', 'O', 'L', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'L', 'O', 'O', 'L', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'L', 'O', 'O', 'L', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L']
+            [0, 0, 0, 0, 2, 2, 0, 0, 0, 0],
+            [0, 0, 0, 0, 2, 2, 0, 0, 0, 0],
+            [0, 0, 0, 0, 2, 2, 0, 0, 0, 0],
+            [0, 0, 0, 0, 2, 2, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         ]
         self.assertEqual(processor.magnify(2).grid, expected_output)
 
     def test_magnify_by_3(self):
         input_grid = [
-            ['L', 'O', 'L'],
-            ['L', 'L', 'L'],
-            ['L', 'L', 'O']
+            [0, 2, 0],
+            [0, 0, 0],
+            [0, 0, 2]
         ]
         processor = GridMapProcessor.from_grid(input_grid)
         expected_output = [
-            ['L', 'L', 'L', 'O', 'O', 'O', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'O', 'O', 'O', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'O', 'O', 'O', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L'],
-            ['L', 'L', 'L', 'L', 'L', 'L', 'O', 'O', 'O'],
-            ['L', 'L', 'L', 'L', 'L', 'L', 'O', 'O', 'O'],
-            ['L', 'L', 'L', 'L', 'L', 'L', 'O', 'O', 'O']
+            [0, 0, 0, 2, 2, 2, 0, 0, 0],
+            [0, 0, 0, 2, 2, 2, 0, 0, 0],
+            [0, 0, 0, 2, 2, 2, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 2, 2, 2],
+            [0, 0, 0, 0, 0, 0, 2, 2, 2],
+            [0, 0, 0, 0, 0, 0, 2, 2, 2]
         ]
         self.assertEqual(processor.magnify(3).grid, expected_output)
 
     def test_magnify_single_element(self):
-        input_grid = [['S']]
+        input_grid = [[1]]
         processor = GridMapProcessor.from_grid(input_grid)
         expected_output = [
-            ['S', 'S'],
-            ['S', 'S']
+            [1, 1],
+            [1, 1]
         ]
         self.assertEqual(processor.magnify(2).grid, expected_output)
 
     def test_magnify_size_1(self):
         input_grid = [
-            ['L', 'O', 'L'],
-            ['L', 'S', 'L'],
-            ['L', 'L', 'O']
+            [0, 2, 0],
+            [0, 1, 0],
+            [0, 0, 2]
         ]
         processor = GridMapProcessor.from_grid(input_grid)
         expected_output = [
-            ['L', 'O', 'L'],
-            ['L', 'S', 'L'],
-            ['L', 'L', 'O']
+            [0, 2, 0],
+            [0, 1, 0],
+            [0, 0, 2]
         ]
         self.assertEqual(processor.magnify(1).grid, expected_output)
 

@@ -16,7 +16,7 @@ class GridMapProcessor:
             raise ValueError("Either a grid or a file_path must be provided.")
 
     @classmethod
-    def from_grid(cls, grid: list[list[str | int]]):
+    def from_grid(cls, grid: list[list[int]]):
         """Alternate constructor to initialize the class with a grid."""
         return cls(grid=grid)
 
