@@ -31,8 +31,7 @@ def main():
 
     # Move the Lawnmower and track visited positions
     for _ in range(time):
-        lm.move()
-        x, y = lm.get_pos()
+        x, y = lm.update_position()
         visited_positions.append((x, y))
 
     print("Obstacles: ", processor.get_obstacles())
