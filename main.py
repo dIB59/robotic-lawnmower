@@ -46,4 +46,7 @@ def main():
 
 
 if __name__ == '__main__':
+    # TODO: run in multiple different threads to get coverage time quickly
+    # TODO: refactor plot_grid_with_visited_tiles to get coverage separately
+    # TODO: add possibility of comparing results with different starting conditions and different collision handlers
     main()
