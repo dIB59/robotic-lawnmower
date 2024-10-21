@@ -18,9 +18,9 @@ class Lawnmower:
         # if cos(v_x)*cos(v_x) + cos(v_x)*cos(v_x) > 3:
         #     raise AssertionError
 
-    def move(self, dt: int = 1):
-        new_x = self.x + self.v_x * dt
-        new_y = self.y + self.v_y * dt
+    def update_position(self) -> (float, float):
+        new_x = self.x + self.v_x * self.dt
+        new_y = self.y + self.v_y * self.dt
 
         if self.is_in_obstacle(new_x, self.y):
             self.v_x *= -1
