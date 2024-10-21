@@ -3,8 +3,9 @@ from matplotlib.colors import ListedColormap, BoundaryNorm
 
 
 class GridMapProcessor:
+
     LAWN = 0
-    START =1
+    START = 1
     OBSTACLE = 2
     VISITED = 3
 
@@ -54,14 +55,14 @@ class GridMapProcessor:
     def get_start_pos(self) -> tuple[int, int]:
         for i, row in enumerate(self.grid):
             for j, char in enumerate(row):
-                if char == 1:
+                if char == self.START:
                     return j, i
 
     def get_obstacles(self) -> list[tuple[int, int]]:
         obs_list = []
         for i, row in enumerate(self.grid):
             for j, char in enumerate(row):
-                if char == 2:
+                if char == self.OBSTACLE:
                     obs_list.append((j, i))
         return obs_list
 
@@ -91,12 +92,12 @@ class GridMapProcessor:
         for x, y in visited_positions:
             if 0 <= y * magnification < rows and 0 <= x * magnification < cols:
                 tiles.add((int(y * magnification), int(x * magnification)))
-                plot_map[int(y * magnification)][int(x * magnification)] = 3  # Mark visited tiles with 3
+                plot_map[int(y * magnification)][int(x * magnification)] = self.VISITED
 
         plt.figure(figsize=(10, 10))
 
         col_map = ListedColormap(['white', 'white', 'black', 'red'], 'indexed')
-        norm = BoundaryNorm([0, 1, 2, 3, 4], col_map.N)
+        norm = BoundaryNorm([self.LAWN, self.START, self.OBSTACLE, self.VISITED, self.VISITED], col_map.N)
 
         self.plot_default_map(col_map, cols, plot_map, rows, norm)
         coverage_percent = (len(tiles) * 100) /(rows * cols)
