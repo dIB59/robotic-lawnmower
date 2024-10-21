@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap
+from matplotlib.colors import ListedColormap, BoundaryNorm
 
 
 class GridMapProcessor:
@@ -96,8 +96,9 @@ class GridMapProcessor:
         plt.figure(figsize=(10, 10))
 
         col_map = ListedColormap(['white', 'yellow', 'black', 'red'], 'indexed')
+        norm = BoundaryNorm([0, 1, 2, 3, 4], col_map.N)
 
-        self.plot_default_map(col_map, cols, plot_map, rows)
+        self.plot_default_map(col_map, cols, plot_map, rows, norm)
         coverage_percent = (len(tiles) * 100) /(rows * cols)
         plt.title(f"Grid Tiles ({len(tiles)} visited) {coverage_percent:.2f}% covered", fontsize=14)
 
@@ -106,8 +107,8 @@ class GridMapProcessor:
         plt.show()
 
     @staticmethod
-    def plot_default_map(col_map, cols, plot_map, rows):
-        plt.pcolormesh(plot_map, edgecolors='k', linewidth=0.5, cmap=col_map)
+    def plot_default_map(col_map, cols, plot_map, rows, norm=None):
+        plt.pcolormesh(plot_map, edgecolors='k', linewidth=0.5, cmap=col_map, norm=norm)
         # Get current axis object and set tick marks
         ax = plt.gca()
         ax.set_yticks(range(0, rows + 1, 2))
