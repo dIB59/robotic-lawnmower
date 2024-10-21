@@ -17,7 +17,13 @@ def main():
     print(f"Start Position: ({start_pos_x}, {start_pos_y})")
 
     # Initialize the Lawnmower with the starting position and grid dimensions
-    lm = Lawnmower(start_pos_x, start_pos_y, 0.1, 0.1, len(grid[0]), len(grid), processor.get_obstacles())
+    lm = Lawnmower(start_pos_x, start_pos_y,
+                   speed=0.3,
+                   theta=45,
+                   grid_len_x=len(grid[0]),
+                   grid_len_y=len(grid),
+                   obstacles=processor.get_obstacles()
+                   )
 
     # Define the time for the simulation
     time = 1000
@@ -38,6 +44,7 @@ def main():
     big_grid.plot_grid_with_visited_tiles(visited_positions, 4)
     # Plot the grid with visited tiles
     #processor.plot_grid_with_visited_tiles(visited_positions)
+
 
 if __name__ == '__main__':
     main()
