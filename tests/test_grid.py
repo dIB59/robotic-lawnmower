@@ -22,7 +22,7 @@ class TestMagnifyFunction(unittest.TestCase):
             ['L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L'],
             ['L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L']
         ]
-        self.assertEqual(processor.magnify(2), expected_output)
+        self.assertEqual(processor.magnify(2).grid, expected_output)
 
     def test_magnify_by_3(self):
         input_grid = [
@@ -42,7 +42,7 @@ class TestMagnifyFunction(unittest.TestCase):
             ['L', 'L', 'L', 'L', 'L', 'L', 'O', 'O', 'O'],
             ['L', 'L', 'L', 'L', 'L', 'L', 'O', 'O', 'O']
         ]
-        self.assertEqual(processor.magnify(3), expected_output)
+        self.assertEqual(processor.magnify(3).grid, expected_output)
 
     def test_magnify_single_element(self):
         input_grid = [['S']]
@@ -51,7 +51,7 @@ class TestMagnifyFunction(unittest.TestCase):
             ['S', 'S'],
             ['S', 'S']
         ]
-        self.assertEqual(processor.magnify(2), expected_output)
+        self.assertEqual(processor.magnify(2).grid, expected_output)
 
     def test_magnify_size_1(self):
         input_grid = [
@@ -65,7 +65,7 @@ class TestMagnifyFunction(unittest.TestCase):
             ['L', 'S', 'L'],
             ['L', 'L', 'O']
         ]
-        self.assertEqual(processor.magnify(1), expected_output)
+        self.assertEqual(processor.magnify(1).grid, expected_output)
 
 
 if __name__ == '__main__':
