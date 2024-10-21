@@ -95,7 +95,7 @@ class GridMapProcessor:
 
         plt.figure(figsize=(10, 10))
 
-        col_map = ListedColormap(['white', 'yellow', 'black', 'red'], 'indexed')
+        col_map = ListedColormap(['white', 'white', 'black', 'red'], 'indexed')
         norm = BoundaryNorm([0, 1, 2, 3, 4], col_map.N)
 
         self.plot_default_map(col_map, cols, plot_map, rows, norm)
