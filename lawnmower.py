@@ -1,27 +1,32 @@
+import math
 import matplotlib.pyplot as plt
-from grid import get_obstacles
 
 
 class Lawnmower:
-    def __init__(self, x=0.0, y=0.0, v_x=0.0, v_y=0.0, grid_len_x=0, grid_len_y=0,
+    def __init__(self, x=0.0, y=0.0, speed=0.3,
+                 grid_len_x=0, grid_len_y=0,
+                 # speed: int = 0.3,  #remember this bug, when speed is too high, covered tiles are skipped
+                 theta: int = 45,
+                 dt: float = 0.5,
                  obstacles: list[tuple[int, int]] = None):
+
         self.x = x
         self.y = y
 
-        self.v_x = v_x
-        self.v_y = v_y
+        self.theta = math.radians(theta)
+        self.v_x = speed * math.cos(theta)
+        self.v_y = speed * math.sin(theta)
 
         self.max_x = grid_len_x
         self.max_y = grid_len_y
 
+        self.dt = dt
+
         self.obstacles = obstacles
 
-        # if cos(v_x)*cos(v_x) + cos(v_x)*cos(v_x) > 3:
-        #     raise AssertionError
-
-    def move(self, dt: int = 1):
-        new_x = self.x + self.v_x * dt
-        new_y = self.y + self.v_y * dt
+    def update_position(self) -> (float, float):
+        new_x = self.x + self.v_x * self.dt
+        new_y = self.y + self.v_y * self.dt
 
         if self.is_in_obstacle(new_x, self.y):
             self.v_x *= -1
@@ -38,6 +43,12 @@ class Lawnmower:
         if self.y > self.max_y or self.y < 0:
             self.v_y *= -1
 
+        print()
+        print(self.v_x, self.v_y)
+        print(self.x, self.y)
+
+        return self.x, self.y
+
     def get_pos(self) -> (float, float):
         return self.x, self.y
 
@@ -47,6 +58,10 @@ class Lawnmower:
 
         plt.figure(figsize=(self.max_x, self.max_y))
         plt.plot(x_vals, y_vals, linestyle='-', color='blue')
+
+        # Set axis limits to always go to max_x and max_y
+        plt.xlim(0, self.max_x)
+        plt.ylim(0, self.max_y)
 
         # Set labels and title
         plt.title(f"Graph of Visited Positions in {time} seconds")
