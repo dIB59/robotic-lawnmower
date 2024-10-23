@@ -5,11 +5,11 @@ This project simulates a robotic lawnmower navigating a grid. Below are some ima
 ## Grid Visualization
 
 ### Initial Grid (50x50)
-![Myplot Tiles 50x50](assets/myplot_tiles_50x50.png)
+![Tricky Tiles](assets/tricky_lawn.png)
 
 ### Visited Path on Grid
-![Visited Path](assets/myplot_visited_path_50x50.png)
+![Tricky Path](assets/tricky_lawn_path.png)
 
 ### Visited Tiles on Grid
-![Visited Tiles](assets/myplot_visited_tiles_50x50.png)
+![Tricky Magnified x2 Visited Tiles](assets/tricky_lawn_coverage.png)
 
