@@ -12,8 +12,12 @@ class GridMapProcessor:
     def __init__(self, grid=None, file_path=None):
         if grid:
             self.grid = grid
+            self.magnification = 1
+
         elif file_path:
             self.grid = self.process_map_csv(file_path)
+            self.magnification = 1
+
         else:
             raise ValueError("Either a grid or a file_path must be provided.")
 
@@ -50,7 +54,9 @@ class GridMapProcessor:
             for _ in range(size):  # Repeat the whole row `size` times
                 big_grid.append(new_row)
 
-        return GridMapProcessor.from_grid(big_grid)
+        big_grid_map_processor = GridMapProcessor.from_grid(big_grid)
+        big_grid_map_processor.magnification = size
+        return big_grid_map_processor
 
     def get_start_pos(self) -> tuple[int, int]:
         for i, row in enumerate(self.grid):
@@ -84,15 +90,15 @@ class GridMapProcessor:
         plt.tight_layout()
         plt.show()
 
-    def plot_grid_with_visited_tiles(self, visited_positions: list[tuple[float, float]], magnification: int = 1):
+    def plot_grid_with_visited_tiles(self, visited_positions: list[tuple[float, float]]):
         plot_map = [row[:] for row in self.grid]
         rows = len(plot_map)
         cols = len(plot_map[0])
         tiles = set()
         for x, y in visited_positions:
-            if 0 <= y * magnification < rows and 0 <= x * magnification < cols:
-                tiles.add((int(y * magnification), int(x * magnification)))
-                plot_map[int(y * magnification)][int(x * magnification)] = self.VISITED
+            if 0 <= y * self.magnification < rows and 0 <= x * self.magnification < cols:
+                tiles.add((int(y * self.magnification), int(x * self.magnification)))
+                plot_map[int(y * self.magnification)][int(x * self.magnification)] = self.VISITED
 
         plt.figure(figsize=(10, 10))
 

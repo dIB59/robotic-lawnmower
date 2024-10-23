@@ -4,7 +4,7 @@ from lawnmower import Lawnmower
 
 def main():
     # Initialize GridMapProcessor with the CSV file
-    processor = GridMapProcessor.from_file("pattern_50x50.csv")
+    processor = GridMapProcessor.from_file("tricky25x25.csv")
 
     # Retrieve the grid
     grid = processor.grid
@@ -40,7 +40,7 @@ def main():
     lm.draw_path(visited_positions, time)
 
     big_grid = processor.magnify(4)
-    big_grid.plot_grid_with_visited_tiles(visited_positions, 4)
+    big_grid.plot_grid_with_visited_tiles(visited_positions)
 
 
 if __name__ == '__main__':
